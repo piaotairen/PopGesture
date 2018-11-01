@@ -12,9 +12,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        title = "RootViewController"
     }
 
-
+    @IBAction func pushGestureController(_ sender: Any) {
+        navigationController?.pushViewController(GestureViewController(), animated: true)
+    }
+    
+    @IBAction func pushNoGestureController(_ sender: Any) {
+        navigationController?.pushViewController(NoGestureViewController(), animated: true)
+    }
+    
 }
 

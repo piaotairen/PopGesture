@@ -12,6 +12,9 @@
 		47C85590218B163A00754711 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C8558E218B163A00754711 /* Main.storyboard */; };
 		47C85592218B163B00754711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47C85591218B163B00754711 /* Assets.xcassets */; };
 		47C85595218B163B00754711 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C85593218B163B00754711 /* LaunchScreen.storyboard */; };
+		47C8559E218B165A00754711 /* FullscreenPopGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C8559D218B165A00754711 /* FullscreenPopGesture.swift */; };
+		47C855A0218B171E00754711 /* NoGestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C8559F218B171E00754711 /* NoGestureViewController.swift */; };
+		47C855A2218B174100754711 /* GestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C855A1218B174100754711 /* GestureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		47C85591218B163B00754711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47C85594218B163B00754711 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47C85596218B163B00754711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47C8559D218B165A00754711 /* FullscreenPopGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullscreenPopGesture.swift; sourceTree = "<group>"; };
+		47C8559F218B171E00754711 /* NoGestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoGestureViewController.swift; sourceTree = "<group>"; };
+		47C855A1218B174100754711 /* GestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +60,23 @@
 		47C85589218B163A00754711 /* PopGesture */ = {
 			isa = PBXGroup;
 			children = (
+				47C8559C218B164400754711 /* PopGesture */,
 				47C8558A218B163A00754711 /* AppDelegate.swift */,
 				47C8558C218B163A00754711 /* ViewController.swift */,
+				47C8559F218B171E00754711 /* NoGestureViewController.swift */,
+				47C855A1218B174100754711 /* GestureViewController.swift */,
 				47C8558E218B163A00754711 /* Main.storyboard */,
 				47C85591218B163B00754711 /* Assets.xcassets */,
 				47C85593218B163B00754711 /* LaunchScreen.storyboard */,
 				47C85596218B163B00754711 /* Info.plist */,
+			);
+			path = PopGesture;
+			sourceTree = "<group>";
+		};
+		47C8559C218B164400754711 /* PopGesture */ = {
+			isa = PBXGroup;
+			children = (
+				47C8559D218B165A00754711 /* FullscreenPopGesture.swift */,
 			);
 			path = PopGesture;
 			sourceTree = "<group>";
@@ -135,8 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C8559E218B165A00754711 /* FullscreenPopGesture.swift in Sources */,
 				47C8558D218B163A00754711 /* ViewController.swift in Sources */,
 				47C8558B218B163A00754711 /* AppDelegate.swift in Sources */,
+				47C855A2218B174100754711 /* GestureViewController.swift in Sources */,
+				47C855A0218B171E00754711 /* NoGestureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
