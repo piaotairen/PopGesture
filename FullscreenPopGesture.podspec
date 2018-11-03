@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "FullscreenPopGesture"
-  s.version      = "0.1.0"
+  s.version      = "1.0.0"
   s.summary      = "PopGesture for App which use a custom navigation bar."
 
   # This description is used to generate tags and improve search results.
