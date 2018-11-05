@@ -21,22 +21,31 @@ open class FullscreenPopGesture {
 
 /// objc_getAssociatedObject的key
 private struct AssociatedObjectKey {
+    
     static let willAppearInjectBlockContainer
         = UnsafeRawPointer(bitPattern: "willAppearInjectBlockContainer".hashValue)
+    
     static let interactivePopDisabled
         = UnsafeRawPointer(bitPattern: "interactivePopDisabled".hashValue)
+    
     static let prefersNavigationBarHidden
         = UnsafeRawPointer(bitPattern: "prefersNavigationBarHidden".hashValue)
+    
     static let maxAllowedInitialDistanceToLeftEdge
         = UnsafeRawPointer(bitPattern: "maxAllowedInitialDistanceToLeftEdge".hashValue)
+    
     static let fullscreenPopGestureRecognizer
         = UnsafeRawPointer(bitPattern: "fullscreenPopGestureRecognizer".hashValue)
+    
     static let popGestureRecognizerDelegate
         = UnsafeRawPointer(bitPattern: "popGestureRecognizerDelegate".hashValue)
+    
     static let viewControllerBasedAppearanceEnabled
         = UnsafeRawPointer(bitPattern: "viewControllerBasedAppearanceEnabled".hashValue)
+    
     static let scrollViewPopGestureRecognizerEnable
         = UnsafeRawPointer(bitPattern: "scrollViewPopGestureRecognizerEnable".hashValue)
+    
 }
 
 typealias WillAppearInjectBlock = (_ viewController: UIViewController, _ animated: Bool) -> Void
@@ -48,6 +57,7 @@ private class WillAppearInjectBlockContainer {
     init(_ block: @escaping WillAppearInjectBlock) {
         self.block = block
     }
+    
 }
 
 class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDelegate {
@@ -129,15 +139,17 @@ fileprivate extension DispatchQueue {
      */
     class func once(token: String, block: () -> Void) {
         objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
+        defer {
+            objc_sync_exit(self)
+        }
         
         if _onceTracker.contains(token) {
             return
         }
-        
         _onceTracker.append(token)
         block()
     }
+    
 }
 
 /// allows any view controller to disable interactive pop gesture, which might
@@ -150,7 +162,7 @@ extension UIViewController {
     open class func controllerInitialize() {
         DispatchQueue.once(token: "com.UIViewController.MethodSwizzling", block: {
             let originalMethod = class_getInstanceMethod(self, #selector(viewWillAppear(_:)))
-            let swizzledMethod = class_getInstanceMethod(self, #selector(swizzled_viewWillAppear(_:)))
+            let swizzledMethod = class_getInstanceMethod(self, #selector(swizzledViewWillAppear(_:)))
             method_exchangeImplementations(originalMethod!, swizzledMethod!)
         })
     }
@@ -212,14 +224,15 @@ extension UIViewController {
     
     // MARK: - Swizzeld
     
-    @objc private func swizzled_viewWillAppear(_ animated: Bool) {
+    @objc private func swizzledViewWillAppear(_ animated: Bool) {
         // Forward to primary implementation.
-        self.swizzled_viewWillAppear(animated)
+        self.swizzledViewWillAppear(animated)
         
         if let block = self.willAppearBlockContainer?.block {
             block(self, animated)
         }
     }
+    
 }
 
 /// allows UINavigationController supporting fullscreen pan gesture.
@@ -236,7 +249,7 @@ extension UINavigationController {
         // Inject "-pushViewController:animated:"
         DispatchQueue.once(token: "com.UINavigationController.MethodSwizzling", block: {
             let originalMethod = class_getInstanceMethod(self, #selector(pushViewController(_:animated:)))
-            let swizzledMethod = class_getInstanceMethod(self, #selector(swizzled_pushViewController(_:animated:)))
+            let swizzledMethod = class_getInstanceMethod(self, #selector(swizzledPushViewController(_:animated:)))
             method_exchangeImplementations(originalMethod!, swizzledMethod!)
         })
     }
@@ -305,7 +318,7 @@ extension UINavigationController {
     
     // MARK: Swizzeld
     
-    @objc private func swizzled_pushViewController(_ viewController: UIViewController, animated: Bool) {
+    @objc private func swizzledPushViewController(_ viewController: UIViewController, animated: Bool) {
         if interactivePopGestureRecognizer?.view?.gestureRecognizers?.contains(fullscreenPopGestureRecognizer) == false {
             // Add our own gesture recognizer to where the onboard screen edge pan gesture recognizer is attached to.
             interactivePopGestureRecognizer?.view?.addGestureRecognizer(fullscreenPopGestureRecognizer)
@@ -327,7 +340,7 @@ extension UINavigationController {
         setupVCBasedNavBarAppearanceIfNeeded(viewController)
         
         // Forward to primary implementation.
-        self.swizzled_pushViewController(viewController, animated: animated)
+        self.swizzledPushViewController(viewController, animated: animated)
     }
     
 }
