@@ -180,8 +180,8 @@ extension UIViewController {
     }
     
     /// Whether the interactive pop gesture is disabled when contained in a navigation
-    /// stack. default is true
-    var interactivePopDisabled: Bool {
+    /// stack. default is false
+    public var interactivePopDisabled: Bool {
         get {
             guard let bools = objc_getAssociatedObject(self, AssociatedObjectKey.interactivePopDisabled!) as? Bool else {
                 return false
@@ -196,7 +196,7 @@ extension UIViewController {
     /// Indicate this view controller prefers its navigation bar hidden or not,
     /// checked when view controller based navigation bar's appearance is enabled.
     /// Default to NO, bars are more likely to show.
-    var prefersNavigationBarHidden: Bool {
+    public var prefersNavigationBarHidden: Bool {
         get {
             guard let bools = objc_getAssociatedObject(self, AssociatedObjectKey.prefersNavigationBarHidden!) as? Bool else {
                 return false
@@ -210,7 +210,7 @@ extension UIViewController {
     
     /// Max allowed initial distance to left edge when you begin the interactive pop
     /// gesture. 0 by default, which means it will ignore this limit.
-    var maxAllowedInitialDistanceToLeftEdge: CGFloat {
+    public var maxAllowedInitialDistanceToLeftEdge: CGFloat {
         get {
             guard let doubleNum = objc_getAssociatedObject(self, AssociatedObjectKey.maxAllowedInitialDistanceToLeftEdge!) as? Double else {
                 return 0.0
@@ -258,7 +258,7 @@ extension UINavigationController {
     
     /// A view controller is able to control navigation bar's appearance by itself,
     /// rather than a global way, checking "fd_prefersNavigationBarHidden" property.
-    /// Default to YES, disable it if you don't want so.
+    /// Default to true, disable it if you don't want so.
     public var viewControllerBasedAppearanceEnabled: Bool {
         get {
             guard let enalbe = objc_getAssociatedObject(self, AssociatedObjectKey.viewControllerBasedAppearanceEnabled!) as? Bool else {
