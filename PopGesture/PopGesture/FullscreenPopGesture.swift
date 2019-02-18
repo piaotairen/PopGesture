@@ -22,28 +22,28 @@ open class FullscreenPopGesture {
 private struct AssociatedObjectKey {
     
     static var willAppearInjectBlockContainer
-        = "PopGesture.pointerKey.fuwillAppearInjectBlockContainer"
+        = "popGesture.pointerKey.fuwillAppearInjectBlockContainer"
     
     static var interactivePopDisabled
-        = "PopGesture.pointerKey.interactivePopDisabled"
+        = "popGesture.pointerKey.interactivePopDisabled"
     
     static var prefersNavigationBarHidden
-        = "PopGesture.pointerKey.prefersNavigationBarHidden"
+        = "popGesture.pointerKey.prefersNavigationBarHidden"
     
     static var maxAllowedInitialDistanceToLeftEdge
-        = "PopGesture.pointerKey.maxAllowedInitialDistanceToLeftEdge"
+        = "popGesture.pointerKey.maxAllowedInitialDistanceToLeftEdge"
     
     static var fullscreenPopGestureRecognizer
-        = "PopGesture.pointerKey.fullscreenPopGestureRecognizer"
+        = "popGesture.pointerKey.fullscreenPopGestureRecognizer"
     
     static var popGestureRecognizerDelegate
-        = "PopGesture.pointerKey.popGestureRecognizerDelegate"
+        = "popGesture.pointerKey.popGestureRecognizerDelegate"
     
     static var viewControllerBasedAppearanceEnabled
-        = "PopGesture.pointerKey.viewControllerBasedAppearanceEnabled"
+        = "popGesture.pointerKey.viewControllerBasedAppearanceEnabled"
     
     static var scrollViewPopGestureRecognizerEnable
-        = "PopGesture.pointerKey.scrollViewPopGestureRecognizerEnable"
+        = "popGesture.pointerKey.scrollViewPopGestureRecognizerEnable"
 }
 
 typealias WillAppearInjectBlock = (_ viewController: UIViewController, _ animated: Bool) -> Void
